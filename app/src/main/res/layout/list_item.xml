@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- LAYOUT FOR ONE ITEM IN LIST VIEW -->
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:descendantFocusability="blocksDescendants"
+    android:elevation="@dimen/list_view_item_elevation">
+
+    <!-- ITEM PICTURE -->
+    <ImageView
+        android:id="@+id/item_picture_row"
+        android:transitionName="picture"
+        android:layout_width="@dimen/list_view_item_image_width"
+        android:layout_height="@dimen/list_view_item_image_height"
+        android:layout_margin="@dimen/list_view_item_image_margin"
+        android:scaleType="fitCenter"
+        android:src="@drawable/take_photo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <!-- ITEM NAME -->
+    <TextView
+        android:id="@+id/item_name_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_view_item_name_margin_left"
+        android:layout_marginEnd="@dimen/list_view_item_name_margin_right"
+        android:layout_marginTop="@dimen/list_view_item_name_margin_top"
+        android:textColor="@color/colorSimpleText"
+        android:textSize="@dimen/list_view_item_name_text_size"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:lines="2"
+        android:minLines="1"
+        android:maxLines="2"
+        android:maxWidth="@dimen/list_view_item_name_max_width"
+        android:maxLength="16"
+        android:gravity="center"/>
+
+    <!-- ITEM PRICE/UNIT -->
+    <TextView
+        android:id="@+id/item_price_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSimpleText"
+        android:textSize="@dimen/list_view_item_price_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/item_quantity_row"
+        app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_name_row"
+        android:gravity="center"/>
+
+    <!-- ITEM CURRENT QUANTITY -->
+    <TextView
+        android:id="@+id/item_quantity_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_view_item_quantity_margin"
+        android:textColor="@color/colorSimpleText"
+        android:textSize="@dimen/list_view_item_quantity_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/item_picture_row"
+        app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <!-- BUTTON TO SELL FROM CURRENT QUANTITY -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_sell_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:elevation="@dimen/list_view_item_sell_button_elevation"
+        android:text="@string/sell"
+        android:textSize="@dimen/list_view_item_sell_button_text_size"
+        android:layout_marginTop="@dimen/list_view_item_sell_button_margin_top"
+        app:layout_constraintTop_toBottomOf="@+id/item_picture_row"
+        android:layout_marginStart="@dimen/list_view_item_sell_button_margin_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/list_view_item_sell_button_margin_bottom"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!-- BUTTON TO ADD TO CURRENT QUANTITY -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_add_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_view_item_add_button_margin"
+        android:background="?attr/selectableItemBackground"
+        android:elevation="@dimen/list_view_item_add_button_elevation"
+        android:text="@string/add"
+        android:textSize="@dimen/list_view_item_add_button_text_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_sell_quantity"
+        app:layout_constraintLeft_toRightOf="@+id/button_sell_quantity" />
+
+    <!-- BUTTON TO DELET ITEM -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/button_delete_item"
+        android:layout_width="@dimen/list_view_item_delete_button_width"
+        android:layout_height="@dimen/list_view_item_delete_button_height"
+        android:layout_margin="@dimen/list_view_item_delete_button_margin"
+        android:background="?attr/selectableItemBackground"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/delete"
+        app:layout_constraintBottom_toBottomOf="@+id/button_add_quantity"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintLeft_toRightOf="@+id/button_add_quantity"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_add_quantity" />
+
+</android.support.constraint.ConstraintLayout>

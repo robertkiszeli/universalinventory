@@ -1,0 +1,101 @@
+<resources>
+
+    <!-- BASE APPLICATION THEME -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <!-- TRANSPARENT BACK TO EDIT ACTIVITY -->
+    <style name="URTransparent" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.0</item>
+    </style>
+
+    <!-- ROTATE BUTTON IN EDIT ACTIVITY -->
+    <style name="rotate_button">
+        <item name="android:layout_width">@dimen/rotate_button_width</item>
+        <item name="android:layout_height">@dimen/rotate_button_height</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD LAYOUT -->
+    <style name="edit_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/edit_field_layout_margin__bottom</item>
+        <item name="android:layout_marginStart">@dimen/edit_field_layout_margin__start</item>
+        <item name="android:layout_marginLeft">@dimen/edit_field_layout_margin__left</item>
+        <item name="android:layout_marginRight">@dimen/edit_field_layout_margin__right</item>
+        <item name="android:layout_marginEnd">@dimen/edit_field_layout_margin__end</item>
+        <item name="android:layout_marginTop">@dimen/edit_field_layout_margin__top</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD TEXT VIEW  -->
+    <style name="edit_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorSimpleText</item>
+        <item name="android:textSize">@dimen/edit_field_text_view_text_size</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD EDIT TEXT  -->
+    <style name="edit_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/edit_item_edit_text_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/edit_item_edit_text_margin_start</item>
+        <item name="android:textSize">@dimen/edit_item_edit_text_text_size</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:gravity">end</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD SPINNER  -->
+    <style name="edit_spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/edit_item_spinner_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/edit_item_spinner_margin_start</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD PHONE NUMBER AND EMAIL ADDRESS  EDIT TEXT-->
+    <style name="edit_edit_text_phone_and_email">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/edit_item_phone_email_edit_text_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/edit_item_phone_email_edit_text_margin_start</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">@dimen/edit_item_phone_email_edit_text_text_size</item>
+        <item name="android:gravity">end</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <!-- EDIT ACTIVITY EDIT FIELD PHONE NUMBER AND EMAIL ADDRESS  -->
+    <style name="edit_button_phone_and_email">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/edit_item_phone_email_button_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/edit_item_phone_email_edit_text_margin_start</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">@dimen/edit_item_phone_email_button_text_size</item>
+        <item name="android:gravity">end</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+</resources>

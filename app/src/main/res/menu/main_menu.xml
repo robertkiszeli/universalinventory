@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- MENU ITEM TO DELETE ALL ITEM FROM INVENTORY DATABASE -->
+
+    <item
+        android:id="@+id/delete_all_item"
+        android:title="@string/delete_all_item_main_menu"
+        app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,183 @@
+<resources>
+    <string name="app_name">Universal Inventory</string>
+    <string-array name="unit_array">
+        <item>piece</item>
+        <item>dozen</item>
+        <item>pack</item>
+        <item>bucket</item>
+        <item>bunch</item>
+        <item>box</item>
+        <item>chest</item>
+        <item>sack</item>
+        <item>bottle</item>
+        <item>mm</item>
+        <item>cm</item>
+        <item>dm</item>
+        <item>m</item>
+        <item>km</item>
+        <item>pica</item>
+        <item>in</item>
+        <item>ft</item>
+        <item>yd</item>
+        <item>rod</item>
+        <item>furlong</item>
+        <item>mi</item>
+        <item>fathom</item>
+        <item>mg</item>
+        <item>g</item>
+        <item>dag</item>
+        <item>kg</item>
+        <item>t</item>
+        <item>gr</item>
+        <item>dr</item>
+        <item>oz</item>
+        <item>lb</item>
+        <item>cwt</item>
+        <item>long cwt</item>
+        <item>ton</item>
+        <item>long ton</item>
+        <item>mm\u00B2</item>
+        <item>cm\u00B2</item>
+        <item>dm\u00B2</item>
+        <item>m\u00B2</item>
+        <item>ha\u00B2</item>
+        <item>km\u00B2</item>
+        <item>in\u00B2</item>
+        <item>ft\u00B2</item>
+        <item>acre</item>
+        <item>mi\u00B2</item>
+        <item>mm\u00B3</item>
+        <item>cm\u00B3</item>
+        <item>dm\u00B3</item>
+        <item>m\u00B3</item>
+        <item>km\u00B3</item>
+        <item>in\u00B3</item>
+        <item>ft\u00B3</item>
+        <item>yd\u00B3</item>
+        <item>acre ft</item>
+        <item>mL</item>
+        <item>cL</item>
+        <item>dL</item>
+        <item>L</item>
+        <item>hL</item>
+        <item>tsp</item>
+        <item>Tbsp</item>
+        <item>fl oz</item>
+        <item>jig</item>
+        <item>gi</item>
+        <item>cp</item>
+        <item>pt</item>
+        <item>qt</item>
+        <item>gal</item>
+        <item>bbl</item>
+        <item>Hhd</item>
+    </string-array>
+    <string-array name="currency_array">
+        <item>\u20ac</item>
+        <item>\u0024</item>
+        <item>\u00A3</item>
+        <item>\u0046\u0074</item>
+        <item>\u0043\u0048\u0046</item>
+        <item>\u0041\u0024</item>
+        <item>\u062f\u002E\u0625</item>
+        <item>\u0192</item>
+        <item>\u0052\u0024</item>
+        <item>\u0042\u0024</item>
+        <item>\u00A5</item>
+        <item>\u006B\u0072</item>
+        <item>\u0046\u004A\u0024</item>
+        <item>\u0051</item>
+        <item>\u004C</item>
+        <item>\u0052\u0070</item>
+        <item>\u20AA</item>
+        <item>\u20B9</item>
+        <item>\u004A\u0024</item>
+        <item>\u20A9</item>
+        <item>\u20A8</item>
+        <item>\u20B1</item>
+        <item>\u0042\u002F\u002E</item>
+        <item>\u0053\u002F\u002E</item>
+        <item>\u007A\u0142</item>
+        <item>\u006C\u0065\u0069</item>
+        <item>\u0440\u0443\u0431</item>
+        <item>\u0053\u0024</item>
+        <item>\u0E3F</item>
+        <item>\u0044\u0054</item>
+        <item>\u0054\u004C</item>
+        <item>\u004E\u0054\u0024</item>
+        <item>\u20AB</item>
+        <item>\u0046</item>
+    </string-array>
+    <string name="item_name_text">Name</string>
+    <string name="item_price_unit_text">Price/Unit</string>
+    <string name="item_current_quantity_text">Current Quantity</string>
+    <string name="save_item_edit_menu">Save item</string>
+    <string name="delete_all_item_main_menu">Delete all item</string>
+    <string name="empty_view_main_menu">Empty database</string>
+    <string name="sell">Sell</string>
+    <string name="add">Add</string>
+    <string name="required_fields">* required fields</string>
+    <string name="currency">Currency</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="call">CALL</string>
+    <string name="order_quantity">Order Quantity</string>
+    <string name="order_unit">Order Unit</string>
+    <string name="email">Email</string>
+    <string name="send">SEND</string>
+    <string name="unit">Unit</string>
+    <string name="cannot_query_URI">Cannot query unknown URI</string>
+    <string name="insert_item_is_not_support_URI">Insert is not supported for</string>
+    <string name="failed_to_insert_in_db">Failed to insert row for</string>
+    <string name="update_is_not_support_URI">Update is not supported for</string>
+    <string name="delet_is_not_support_URI">Deletion is not supported for</string>
+    <string name="unknown_URI">Unknown Uri</string>
+    <string name="with_match_URI">with match</string>
+    <string name="no_picture">noPicture</string>
+    <string name="delete_item">Delete item</string>
+    <string name="delete_item_text">Select \"Delete\" to delete item !</string>
+    <string name="delete">Delete</string>
+    <string name="was_deleted">was deleted !</string>
+    <string name="cancel">Cancel</string>
+    <string name="selling_quantity">Selling quantity</string>
+    <string name="selling_quantit_text">Add number in</string>
+    <string name="sell_more_than_have">You are selling more than you have!</string>
+    <string name="wrong_input">Wrong input!</string>
+    <string name="add_quantity">Adding quantity</string>
+    <string name="add_quantity_text">Add number in</string>
+    <string name="max_number">The max number is 999.999.999,99!</string>
+    <string name="fabX">fabX</string>
+    <string name="fabY">fabY</string>
+    <string name="delete_all_item">Delete all item?</string>
+    <string name="check_permission">Check application permission</string>
+    <string name="invalid_phone_number">Invalid phone number</string>
+    <string name="give_a_name">You must give a name !</string>
+    <string name="give_a_supplier_name">You must give a supplier !</string>
+    <string name="give_valid_order_quantity">You must give a valid order quantity !</string>
+    <string name="give_valid_email">You must give a valid email address !</string>
+    <string name="good_day">Good day,</string>
+    <string name="like_to_order">.\n I would like to order \n</string>
+    <string name="of">of</string>
+    <string name="add_item">Add Item</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="camera_data">cameraData</string>
+    <string name="camera_on">cameraOn</string>
+    <string name="current_path">mCurrentPhotoPath</string>
+    <string name="new_path">mNewPhotoPath</string>
+    <string name="item_name_hint">Item name</string>
+    <string name="supplier_name_hint">Supplier Name</string>
+    <string name="phone_number_hint">Phone number with country code</string>
+    <string name="email_hint">Valid email format</string>
+    <string name="picture_file_format">.jpg</string>
+    <string name="picture_file_for_name">JPEG_</string>
+    <string name="discard_changes">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_edit">Keep editing</string>
+    <string name="give_valid_price">You must give a valid price !</string>
+    <string name="give_valid_quantity">You must give a valid quantity !</string>
+    <string name="error_with_saving">Error with saving item</string>
+    <string name="item_saved">Item saved</string>
+    <string name="error_at_update">Error with updating item</string>
+    <string name="update_success">Item update successful</string>
+
+</resources>
