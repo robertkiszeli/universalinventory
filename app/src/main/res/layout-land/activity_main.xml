@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- MAIN ACTIVITY MAIN MENU LAYOUT -->
+<?xml version="1.0" encoding="utf-8"?><!-- MAIN ACTIVITY MAIN MENU LAYOUT -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -10,16 +9,16 @@
 
     <!-- LAYOUT FOR EMPTY LIST VIEW -->
     <LinearLayout
+        android:id="@+id/empty_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/empty_view">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="@dimen/empty_view_text_size_main_menu"
-            android:text="@string/empty_view_main_menu"/>
+            android:text="@string/empty_view_main_menu"
+            android:textSize="@dimen/empty_view_text_size_main_menu" />
 
     </LinearLayout>
 
@@ -27,26 +26,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
         <!-- LIST VIEW TO SHOW ITEMS -->
         <android.support.v7.widget.ListViewCompat
             android:id="@+id/item_list_view"
             android:layout_width="@dimen/list_view_width_landscape"
             android:layout_height="match_parent"
-            android:dividerHeight="@dimen/item_list_view_divider_height"
+            android:descendantFocusability="afterDescendants"
             android:divider="@color/colorPrimaryLight"
-            android:descendantFocusability="afterDescendants">
-        </android.support.v7.widget.ListViewCompat>
+            android:dividerHeight="@dimen/item_list_view_divider_height"></android.support.v7.widget.ListViewCompat>
     </LinearLayout>
 
     <!-- FLOATING ACTION BUTTON TO CREATE A NEW ITEM -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_item"
-        android:layout_height="@dimen/fab_button_height"
         android:layout_width="@dimen/fab_button_width"
-        android:layout_alignParentRight="true"
+        android:layout_height="@dimen/fab_button_height"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_button_margin"
         android:elevation="@dimen/fab_button_elevation"
         android:src="@mipmap/plus" />

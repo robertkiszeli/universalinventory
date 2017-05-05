@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- MENU ITEM TO SAVE ITEM TO INVENTORY -->
 
     <item
         android:id="@+id/save_item"
-        android:title="@string/save_item_edit_menu"
         android:icon="@mipmap/done"
-        app:showAsAction="always"/>
+        android:title="@string/save_item_edit_menu"
+        app:showAsAction="always" />
 
 </menu>

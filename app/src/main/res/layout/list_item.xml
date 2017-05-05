@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- LAYOUT FOR ONE ITEM IN LIST VIEW -->
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!-- LAYOUT FOR ONE ITEM IN LIST VIEW -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,12 +11,12 @@
     <!-- ITEM PICTURE -->
     <ImageView
         android:id="@+id/item_picture_row"
-        android:transitionName="picture"
         android:layout_width="@dimen/list_view_item_image_width"
         android:layout_height="@dimen/list_view_item_image_height"
         android:layout_margin="@dimen/list_view_item_image_margin"
         android:scaleType="fitCenter"
         android:src="@drawable/take_photo"
+        android:transitionName="picture"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
@@ -28,36 +26,36 @@
         android:id="@+id/item_name_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/list_view_item_name_margin_left"
         android:layout_marginEnd="@dimen/list_view_item_name_margin_right"
+        android:layout_marginStart="@dimen/list_view_item_name_margin_left"
         android:layout_marginTop="@dimen/list_view_item_name_margin_top"
+        android:gravity="center"
+        android:lines="2"
+        android:maxLength="16"
+        android:maxLines="2"
+        android:maxWidth="@dimen/list_view_item_name_max_width"
+        android:minLines="1"
         android:textColor="@color/colorSimpleText"
         android:textSize="@dimen/list_view_item_name_text_size"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:lines="2"
-        android:minLines="1"
-        android:maxLines="2"
-        android:maxWidth="@dimen/list_view_item_name_max_width"
-        android:maxLength="16"
-        android:gravity="center"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- ITEM PRICE/UNIT -->
     <TextView
         android:id="@+id/item_price_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textColor="@color/colorSimpleText"
         android:textSize="@dimen/list_view_item_price_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/item_quantity_row"
         app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_name_row"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/item_name_row" />
 
     <!-- ITEM CURRENT QUANTITY -->
     <TextView
@@ -65,30 +63,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/list_view_item_quantity_margin"
+        android:gravity="center"
         android:textColor="@color/colorSimpleText"
         android:textSize="@dimen/list_view_item_quantity_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/item_picture_row"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toRightOf="@+id/item_picture_row"
-        app:layout_constraintRight_toRightOf="parent"
-        android:gravity="center"
-        app:layout_constraintHorizontal_bias="0.502" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <!-- BUTTON TO SELL FROM CURRENT QUANTITY -->
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_sell_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/list_view_item_sell_button_margin_bottom"
+        android:layout_marginStart="@dimen/list_view_item_sell_button_margin_left"
+        android:layout_marginTop="@dimen/list_view_item_sell_button_margin_top"
         android:background="?attr/selectableItemBackground"
         android:elevation="@dimen/list_view_item_sell_button_elevation"
         android:text="@string/sell"
         android:textSize="@dimen/list_view_item_sell_button_text_size"
-        android:layout_marginTop="@dimen/list_view_item_sell_button_margin_top"
-        app:layout_constraintTop_toBottomOf="@+id/item_picture_row"
-        android:layout_marginStart="@dimen/list_view_item_sell_button_margin_left"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/list_view_item_sell_button_margin_bottom"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_picture_row" />
 
     <!-- BUTTON TO ADD TO CURRENT QUANTITY -->
     <android.support.v7.widget.AppCompatButton

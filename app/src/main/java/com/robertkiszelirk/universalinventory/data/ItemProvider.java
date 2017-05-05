@@ -31,9 +31,9 @@ public class ItemProvider extends ContentProvider {
     /* ADD URIS TO URI MATCHER */
     static {
 
-        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY,ITEMS);
+        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY, ITEMS);
 
-        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY + "/#",ITEMS_ID);
+        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY + "/#", ITEMS_ID);
     }
 
     /* DATABASE HELPER OBJECT */
@@ -62,12 +62,12 @@ public class ItemProvider extends ContentProvider {
         switch (match) {
             case ITEMS:
                 /* QUERY TABLE */
-                cursor = database.query(InventoryEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
+                cursor = database.query(InventoryEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case ITEMS_ID:
                 /* QUERY A SINGLE ITEM BASED ON THE ID */
                 selection = InventoryEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = database.query(InventoryEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
@@ -103,18 +103,18 @@ public class ItemProvider extends ContentProvider {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         /* INSERT ITEM AND GET RESULT INT */
-        long id = db.insert(InventoryEntry.TABLE_NAME,null,contentValues);
+        long id = db.insert(InventoryEntry.TABLE_NAME, null, contentValues);
 
         /* CHECK IF INSERT IS DONE */
-        if ( id == -1){
+        if (id == -1) {
             Log.e(LOG_TAG, getContext().getString(R.string.failed_to_insert_in_db) + uri);
             return null;
         }
 
         /* HANDLE TABLE CHANGE */
-        getContext().getContentResolver().notifyChange(uri,null );
+        getContext().getContentResolver().notifyChange(uri, null);
 
-        return ContentUris.withAppendedId(uri,id);
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /* UPDATE TABLE OR SELECTED ITEM BASED ON SELECTION AD SELECTION RGS */
@@ -145,11 +145,11 @@ public class ItemProvider extends ContentProvider {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         /* UPDATE SELECTED ROW AND GET RESULT*/
-        int rowsUpdated =  db.update(InventoryEntry.TABLE_NAME,contentValues,selection,selectionArgs);
+        int rowsUpdated = db.update(InventoryEntry.TABLE_NAME, contentValues, selection, selectionArgs);
 
         /* CHECK RESULT IF UPDATE WAS SUCCESSFUL */
-        if(rowsUpdated != 0){
-            getContext().getContentResolver().notifyChange(uri,null);
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
         }
 
         return rowsUpdated;
@@ -164,12 +164,12 @@ public class ItemProvider extends ContentProvider {
         switch (match) {
             case ITEMS:
                 /* DELETE TABLE DATA */
-                return deleteItem(uri,selection,selectionArgs);
+                return deleteItem(uri, selection, selectionArgs);
             case ITEMS_ID:
                 /* DELETE SELECTED ROW */
                 selection = InventoryEntry._ID + "=?";
-                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
-                return deleteItem(uri,selection,selectionArgs);
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                return deleteItem(uri, selection, selectionArgs);
             default:
                 /* HANDLE WRONG URI */
                 throw new IllegalArgumentException("" + getContext().getString(R.string.delet_is_not_support_URI) + uri);
@@ -183,11 +183,11 @@ public class ItemProvider extends ContentProvider {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         /* DELETE SELECTED ROW */
-        int rowsDeleted = db.delete(InventoryEntry.TABLE_NAME,selection,selectionArgs);
+        int rowsDeleted = db.delete(InventoryEntry.TABLE_NAME, selection, selectionArgs);
 
         /* HANDLE WRONG URI */
-        if (rowsDeleted != 0){
-            getContext().getContentResolver().notifyChange(uri,null);
+        if (rowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
         }
 
         return rowsDeleted;
@@ -206,7 +206,7 @@ public class ItemProvider extends ContentProvider {
                 return InventoryEntry.CONTENT_ITEM_TYPE;
             default:
                 /* HANDLE WRONG URI */
-                throw new IllegalArgumentException("" + getContext().getString(R.string.unknown_URI) + uri + " " + getContext().getString(R.string.with_match_URI)+ " " + match);
+                throw new IllegalArgumentException("" + getContext().getString(R.string.unknown_URI) + uri + " " + getContext().getString(R.string.with_match_URI) + " " + match);
         }
     }
 }

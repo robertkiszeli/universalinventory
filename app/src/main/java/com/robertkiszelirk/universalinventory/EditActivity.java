@@ -46,6 +46,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     AppCompatImageButton rotateImageLeft;
 
     /* CHECK IF IMAGE IS ROTATED OR NOT */
-    boolean imageRotated=false;
+    boolean imageRotated = false;
 
     /* FILE TO STORE IMAGE */
     File imageFile;
@@ -250,7 +251,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 intent.setData(Uri.parse("tel:" + phoneNumber));
                 if (ActivityCompat.checkSelfPermission(EditActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     showToast(getString(R.string.check_permission));
-                }else{
+                } else {
                     try {
                         /* CHECK VALID PHONE NUMBER AND START INTENT */
                         if (Patterns.PHONE.matcher(phoneNumber).matches()) {
@@ -260,7 +261,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                             showToast(getString(R.string.invalid_phone_number));
                             supplierPhoneNumber.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         showToast(getString(R.string.invalid_phone_number));
                         supplierPhoneNumber.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
                     }
@@ -294,36 +295,36 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 String name = itemName.getText().toString().trim();
 
                 /* CHECK IF ITEM HAS A NAME */
-                boolean validName =  true;
+                boolean validName = true;
 
-                if(name.length() == 0){
+                if (name.length() == 0) {
                     validName = false;
 
                     toastText += getString(R.string.give_a_name);
 
-                    itemName.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+                    itemName.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
 
-                }else{
+                } else {
                     itemName.setBackgroundColor(Color.TRANSPARENT);
                 }
 
                 /* CHECK IF ITEM HAS A SUPPLIER */
                 String supplier = supplierName.getText().toString().trim();
 
-                boolean validSupplier =  true;
+                boolean validSupplier = true;
 
-                if(supplier.length() == 0){
+                if (supplier.length() == 0) {
                     validSupplier = false;
 
                     if (toastText.equals("")) {
                         toastText += getString(R.string.give_a_supplier_name);
-                    }else {
+                    } else {
                         toastText += "\n\n" + getString(R.string.give_a_supplier_name);
                     }
 
-                    supplierName.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+                    supplierName.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
 
-                }else{
+                } else {
                     supplierName.setBackgroundColor(Color.TRANSPARENT);
                 }
 
@@ -332,24 +333,24 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 boolean validQuantity = false;
 
-                try{
+                try {
                     itemOrderQuantity.setBackgroundColor(Color.TRANSPARENT);
                     orderQuantity = Double.parseDouble(itemOrderQuantity.getText().toString());
                     validQuantity = true;
-                }catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
 
                     if (toastText.equals("")) {
                         toastText += getString(R.string.give_valid_order_quantity);
-                    }else {
+                    } else {
                         toastText += "\n\n" + getString(R.string.give_valid_order_quantity);
                     }
-                    itemOrderQuantity.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+                    itemOrderQuantity.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
                 }
 
                 /* CHECK IF EMAIL IS VALID */
                 boolean emailValid = Patterns.EMAIL_ADDRESS.matcher(supplierEmailAddress.getText().toString()).matches();
 
-                if(!emailValid) {
+                if (!emailValid) {
                     if (toastText.equals("")) {
                         toastText += getString(R.string.give_valid_email);
                     } else {
@@ -359,7 +360,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
 
                 /* IF ALL VALID START INTENT FOR EMAIL SEND */
-                if((validName)&&(validSupplier)&&(emailValid)&&(validQuantity)){
+                if ((validName) && (validSupplier) && (emailValid) && (validQuantity)) {
                     supplierEmailAddress.setBackgroundColor(Color.TRANSPARENT);
                     String message = getString(R.string.good_day) + supplier + getString(R.string.like_to_order) + orderQuantity + " " + orderUnitSpinner.getSelectedItem().toString() + " " + getString(R.string.of) + " " + name;
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -369,7 +370,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                     if (intent.resolveActivity(getPackageManager()) != null) {
                         startActivity(intent);
                     }
-                }else{
+                } else {
 
                     showToast(toastText);
 
@@ -378,26 +379,26 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         /* IF SCREEN ROTATION OR SOMETHING ELSE RESTART THE ACTIVITY */
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
 
             /* RESET IMAGE */
             resetAfterChange(savedInstanceState);
 
             /* SELECT USAGE */
-            if (currentItemUri == null){
+            if (currentItemUri == null) {
                 setTitle(getString(R.string.add_item));
-            }else{
+            } else {
                 setTitle(getString(R.string.edit_item));
             }
 
             /* SET CAMERA BACK */
-            if(cameraOn){
+            if (cameraOn) {
                 cameraData = savedInstanceState.getParcelable(getString(R.string.camera_data));
                 onActivityResult(REQUEST_IMAGE_CAPTURE, Activity.RESULT_OK, cameraData);
             }
 
 
-        }else {
+        } else {
             /* AT FIRST START*/
             if (currentItemUri == null) {
                 setTitle(getString(R.string.add_item));
@@ -419,9 +420,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         /* SET ASTERISK COLOR AND PLACES */
-        setAsterisk(R.id.item_name_text_in_edit,getResources().getString(R.string.item_name_text));
-        setAsterisk(R.id.item_price_unit_in_edit,getResources().getString(R.string.item_price_unit_text));
-        setAsterisk(R.id.item_current_quantity_in_edit,getResources().getString(R.string.item_current_quantity_text));
+        setAsterisk(R.id.item_name_text_in_edit, getResources().getString(R.string.item_name_text));
+        setAsterisk(R.id.item_price_unit_in_edit, getResources().getString(R.string.item_price_unit_text));
+        setAsterisk(R.id.item_current_quantity_in_edit, getResources().getString(R.string.item_current_quantity_text));
 
     }
 
@@ -457,13 +458,13 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     /* SET ASTERISK METHOD */
-    private void setAsterisk(int textId,String string) {
+    private void setAsterisk(int textId, String string) {
 
-        string +="*";
+        string += "*";
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder(string);
-        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent));
-        stringBuilder.setSpan(foregroundColorSpan,string.length()-1,string.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        TextView nameText = (TextView)findViewById(textId);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+        stringBuilder.setSpan(foregroundColorSpan, string.length() - 1, string.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        TextView nameText = (TextView) findViewById(textId);
         nameText.setText(stringBuilder);
 
 
@@ -474,24 +475,24 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
         int rotateValue;
 
-        if(b){
+        if (b) {
             rotateValue = +90;
-        }else{
+        } else {
             rotateValue = -90;
         }
 
-        Matrix matrix= new Matrix();
+        Matrix matrix = new Matrix();
         matrix.setRotate(rotateValue);
 
-        if((!mCurrentPhotoPath.equals(getString(R.string.no_picture)))||(!mNewPhotoPath.equals(getString(R.string.no_picture)))){
-            if(mCurrentPhotoPath.equals(mNewPhotoPath)){
+        if ((!mCurrentPhotoPath.equals(getString(R.string.no_picture))) || (!mNewPhotoPath.equals(getString(R.string.no_picture)))) {
+            if (mCurrentPhotoPath.equals(mNewPhotoPath)) {
 
-                itemPictureBitmap = Bitmap.createBitmap(itemPictureBitmap,0,0,itemPictureBitmap.getWidth(),itemPictureBitmap.getHeight(),matrix,true);
+                itemPictureBitmap = Bitmap.createBitmap(itemPictureBitmap, 0, 0, itemPictureBitmap.getWidth(), itemPictureBitmap.getHeight(), matrix, true);
                 itemPicture.setImageBitmap(itemPictureBitmap);
 
-            }else{
+            } else {
 
-                itemNewPictureBitmap = Bitmap.createBitmap(itemNewPictureBitmap,0,0,itemNewPictureBitmap.getWidth(),itemNewPictureBitmap.getHeight(),matrix,true);
+                itemNewPictureBitmap = Bitmap.createBitmap(itemNewPictureBitmap, 0, 0, itemNewPictureBitmap.getWidth(), itemNewPictureBitmap.getHeight(), matrix, true);
                 itemPicture.setImageBitmap(itemNewPictureBitmap);
 
             }
@@ -502,15 +503,15 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     /* SET DATA FOR ADD ITEM START */
     private void setNullData() {
 
-        mCurrentPhotoPath =getString(R.string.no_picture);
+        mCurrentPhotoPath = getString(R.string.no_picture);
         imageFile = new File(mCurrentPhotoPath);
         mNewPhotoPath = getString(R.string.no_picture);
         itemName.setHint(R.string.item_name_hint);
         unitSpinner.setSelection(0);
         itemPriceUnit.setHint("" + 0.0);
         currencySpinner.setSelection(0);
-        itemCurrentQuantity.setHint(""+0.0);
-        itemOrderQuantity.setHint(""+0.0);
+        itemCurrentQuantity.setHint("" + 0.0);
+        itemOrderQuantity.setHint("" + 0.0);
         supplierName.setHint(R.string.supplier_name_hint);
         supplierPhoneNumber.setHint(R.string.phone_number_hint);
         supplierEmailAddress.setHint(R.string.email_hint);
@@ -518,28 +519,28 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     /* START CAMERA TO TAKE PICTURE */
-    private void dispatchTakePicture(){
+    private void dispatchTakePicture() {
 
         /* CREATE INTENT FOR CAMERA */
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         /* IF PHONE HAS CAMERA ACTIVITY */
-        if(takePictureIntent.resolveActivity(getPackageManager()) != null){
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             imageNewFile = null;
-            try{
+            try {
                 /* CREATE FILE TO STORE PICTURE */
                 imageNewFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(imageNewFile != null){
+            if (imageNewFile != null) {
                 /* GET PICTURE */
                 Uri photoUri = FileProvider.getUriForFile(this,
                         "com.robertkiszelirk.universalinventory.fileprovider",
                         imageNewFile
                 );
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }
@@ -557,7 +558,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             /* IMAGE HAS CHANGED */
             itemHasChanged = true;
 
-            if(cameraOn) {
+            if (cameraOn) {
                 /* SET PICTURE TO IMAGE BUTTON AND SAVE IT */
                 itemNewPictureBitmap = BitmapFactory.decodeFile(imageNewFile.getAbsolutePath());
                 /* RESIZE IMAGE */
@@ -586,8 +587,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         int height = bm.getHeight();
 
         /* SCALE SIZES */
-        float scaleWidth = ((float) width/10) / width;
-        float scaleHeight = ((float) height/10) / height;
+        float scaleWidth = ((float) width / 10) / width;
+        float scaleHeight = ((float) height / 10) / height;
 
         // CREATE A MATRIX FOR THE MANIPULATION
         Matrix matrix = new Matrix();
@@ -603,7 +604,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     /* CREATE FILE METHOD */
-    private File createImageFile() throws IOException{
+    private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = getString(R.string.picture_file_for_name) + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -621,14 +622,14 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     /* CREATE TOOLBAR MENU */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.edit_menu,menu);
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             /* SAVE ITEM */
             case R.id.save_item:
                 saveItem();
@@ -636,7 +637,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             /* RETURN TO MAIN ACTIVITY */
             case android.R.id.home:
                 /* IF NOTHING HAS CHANGED */
-                if(!itemHasChanged){
+                if (!itemHasChanged) {
                     if (showCircleRevealAnim) {
                         /* START ANIMATION FOR FLOAT ACTION BUTTON */
                         circleRevealAnimOut();
@@ -648,14 +649,14 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
 
                 /* CREATE DIALOG IF SOMETHING HAS CHANGED */
-                DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener(){
+                DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(dialogInterface != null){
+                        if (dialogInterface != null) {
                             dialogInterface.dismiss();
                         }
-                        if(!mCurrentPhotoPath.equals(mNewPhotoPath)) {
+                        if (!mCurrentPhotoPath.equals(mNewPhotoPath)) {
                             if (imageNewFile.exists()) {
                                 imageNewFile.delete();
                             }
@@ -684,12 +685,12 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
         AlertDialog.Builder aBuilder = new AlertDialog.Builder(this);
         aBuilder.setMessage(R.string.discard_changes);
-        aBuilder.setPositiveButton(R.string.discard,discardButtonClickListener);
-        aBuilder.setNegativeButton(R.string.keep_edit, new DialogInterface.OnClickListener(){
+        aBuilder.setPositiveButton(R.string.discard, discardButtonClickListener);
+        aBuilder.setNegativeButton(R.string.keep_edit, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (dialogInterface != null){
+                if (dialogInterface != null) {
                     dialogInterface.dismiss();
                 }
             }
@@ -710,14 +711,14 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         /* CHECK NAME CHANGE */
         String name = itemName.getText().toString().trim();
 
-        if(name.length() == 0){
+        if (name.length() == 0) {
             hasData = false;
 
             toastText = getString(R.string.give_a_name);
 
-            itemName.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+            itemName.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
 
-        }else{
+        } else {
             itemName.setBackgroundColor(Color.TRANSPARENT);
         }
 
@@ -726,23 +727,23 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
         String priceString = itemPriceUnit.getText().toString();
 
-        try{
+        try {
             itemPriceUnit.setBackgroundColor(Color.TRANSPARENT);
 
             price = Double.parseDouble(priceString);
 
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
             hasData = false;
 
-            if(toastText.equals("")){
+            if (toastText.equals("")) {
                 toastText += getString(R.string.give_valid_price);
-            }else{
+            } else {
                 toastText += "\n\n";
                 toastText += getString(R.string.give_valid_price);
             }
 
-            itemPriceUnit.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+            itemPriceUnit.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
 
         }
 
@@ -751,28 +752,28 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
         String quantityString = itemCurrentQuantity.getText().toString();
 
-        try{
+        try {
             itemCurrentQuantity.setBackgroundColor(Color.TRANSPARENT);
 
             quantity = Double.parseDouble(quantityString);
 
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
             hasData = false;
 
-            if(toastText.equals("")){
+            if (toastText.equals("")) {
                 toastText += getString(R.string.give_valid_quantity);
-            }else{
+            } else {
                 toastText += "\n\n";
                 toastText += getString(R.string.give_valid_quantity);
             }
 
-            itemCurrentQuantity.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorAlert,null));
+            itemCurrentQuantity.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAlert, null));
 
         }
 
         /* IF EVERYTHING IS VALID */
-        if(hasData) {
+        if (hasData) {
 
             /* SAVE PICTURE IF NEW ONE AND DELETE OLD ONE */
             String picturePath;
@@ -793,7 +794,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                     e.printStackTrace();
                 }
             } else {
-                if(imageRotated) {
+                if (imageRotated) {
                     if (!mCurrentPhotoPath.equals("noPicture")) {
                         File deleteFile = new File(mCurrentPhotoPath);
                         deleteFile.delete();
@@ -846,7 +847,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
             } else {
                 /* SAVE ITEM IN EDIT MODE */
-                if(itemHasChanged) {
+                if (itemHasChanged) {
 
                     int rowsAffected = getContentResolver().update(currentItemUri, values, null, null);
 
@@ -867,7 +868,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 supportFinishAfterTransition();
             }
 
-        }else{
+        } else {
             /* SHOW WARNINGS */
             showToast(toastText);
 
@@ -879,7 +880,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
         String[] projection = {
-               InventoryEntry._ID,
+                InventoryEntry._ID,
                 InventoryEntry.COLUMN_ITEM_PICTURE,
                 InventoryEntry.COLUMN_ITEM_NAME,
                 InventoryEntry.COLUMN_ITEM_UNIT,
@@ -903,7 +904,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
 
             /* GET DATA FROM CURSOR */
             int pictureColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_PICTURE);
@@ -930,7 +931,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             /* SET VARIABLES TO THE CORRECT VIEW */
             mCurrentPhotoPath = picturePath;
             mNewPhotoPath = picturePath;
-            if(!mCurrentPhotoPath.equals(getString(R.string.no_picture))) {
+            if (!mCurrentPhotoPath.equals(getString(R.string.no_picture))) {
                 imageFile = new File(picturePath);
                 itemPictureBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
                 itemPicture.setImageBitmap(itemPictureBitmap);
@@ -938,9 +939,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             itemName.setText(name);
             unitSpinner.setSelection(unitAdapter.getPosition(unit));
             orderUnitSpinner.setSelection(unitAdapter.getPosition(unit));
-            itemPriceUnit.setText(""+price);
+            itemPriceUnit.setText("" + price);
             currencySpinner.setSelection(currencyAdapter.getPosition(currency));
-            itemCurrentQuantity.setText(""+quantity);
+            itemCurrentQuantity.setText("" + quantity);
             supplierName.setText(supName);
             supplierPhoneNumber.setText(supPhone);
             supplierEmailAddress.setText(supEmail);
@@ -960,7 +961,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         /* CHECK IF SOMETHING HAS CHANGED */
         if (!itemHasChanged) {
 
-            if (showCircleRevealAnim){
+            if (showCircleRevealAnim) {
 
                 circleRevealAnimOut();
 
@@ -968,7 +969,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 supportFinishAfterTransition();
             }
 
-        }else {
+        } else {
 
             /* SHOW DIALOG TO DISCARD OR KEEP EDITING */
             DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener() {
@@ -1009,7 +1010,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 int finalRadius = Math.max(editView.getWidth(), editView.getHeight());
 
-                Animator animator = ViewAnimationUtils.createCircularReveal(editView,animStartX , animStartY, 0, finalRadius);
+                Animator animator = ViewAnimationUtils.createCircularReveal(editView, animStartX, animStartY, 0, finalRadius);
 
                 editView.setVisibility(View.VISIBLE);
 
@@ -1040,9 +1041,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-    private void showToast(String string){
+    private void showToast(String string) {
 
-        Toast.makeText(EditActivity.this,string,Toast.LENGTH_LONG).show();
+        Toast.makeText(EditActivity.this, string, Toast.LENGTH_LONG).show();
 
     }
 
@@ -1051,11 +1052,11 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onSaveInstanceState(Bundle outState) {
 
 
-        outState.putString(getString(R.string.current_path),mCurrentPhotoPath);
-        outState.putString(getString(R.string.new_path),mNewPhotoPath);
-        outState.putParcelable(getString(R.string.camera_data),cameraData);
-        outState.putBoolean(getString(R.string.camera_on),cameraOn);
-        
+        outState.putString(getString(R.string.current_path), mCurrentPhotoPath);
+        outState.putString(getString(R.string.new_path), mNewPhotoPath);
+        outState.putParcelable(getString(R.string.camera_data), cameraData);
+        outState.putBoolean(getString(R.string.camera_on), cameraOn);
+
         super.onSaveInstanceState(outState);
     }
 }

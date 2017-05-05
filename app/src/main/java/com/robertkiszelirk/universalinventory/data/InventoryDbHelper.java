@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.robertkiszelirk.universalinventory.data.InventoryContract.InventoryEntry;
 
 /* DATABASE HELPER FOR INVENTORY DATABASE */
-public class InventoryDbHelper extends SQLiteOpenHelper{
+class InventoryDbHelper extends SQLiteOpenHelper {
 
     /* DATABASE NAME */
     private static final String DATABASE_NAME = "inventory.db";
@@ -15,8 +15,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper{
     /* DATABASE VERSION */
     private static final int DATABASE_VERSION = 1;
 
-    public InventoryDbHelper(Context context){
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+    InventoryDbHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

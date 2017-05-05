@@ -25,7 +25,7 @@ import java.io.File;
 
 
 /* MAIN ACTIVITY FOR UNIVERSAL INVENTORY */
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /* FLOATING ACTION BUTTON TO ADD A NEW ITEM TO THE DATABASE */
     FloatingActionButton addItem;
@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(View view) {
 
                 /* CREATE INTENT TO START EDIT ACTIVITY TO EDIT OR ADD ITEM */
-                Intent intent = new Intent(MainActivity.this,EditActivity.class);
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
 
                 /* PASS FLOAT ACTION BUTTON CENTER FOR ANIMATION */
-                intent.putExtra(getString(R.string.fabX),(addItem.getLeft() + addItem.getRight())/2);
-                intent.putExtra(getString(R.string.fabY),(addItem.getTop() + addItem.getBottom())/2);
+                intent.putExtra(getString(R.string.fabX), (addItem.getLeft() + addItem.getRight()) / 2);
+                intent.putExtra(getString(R.string.fabY), (addItem.getTop() + addItem.getBottom()) / 2);
 
                 /* START EDIT ACTIVITY */
                 startActivity(intent);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         /* ITEMS LIST VIEW */
-        ListView itemListView = (ListView)findViewById(R.id.item_list_view);
+        ListView itemListView = (ListView) findViewById(R.id.item_list_view);
 
         /* SET EMPTY VIEW FOR EMPTY LIST */
         View emptyView = findViewById(R.id.empty_view);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         itemListView.setEmptyView(emptyView);
 
         /* INITIALIZE ADAPTER */
-        itemCursorAdapter = new ItemCursorAdapter(this,null);
+        itemCursorAdapter = new ItemCursorAdapter(this, null);
 
         /* SET ADAPTER TO LIST VIEW */
         itemListView.setAdapter(itemCursorAdapter);
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 /* CREATE INTENT IF ITEM SELECTED */
-                Intent intent = new Intent(MainActivity.this,EditActivity.class);
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
 
                 /* CREATE URI TO PASS ITEM ID */
-                Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI,id);
+                Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
 
                 /* SET URI TO INTENT */
                 intent.setData(currentItemUri);
@@ -92,23 +92,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 ImageView iView = (ImageView) view.findViewById(R.id.item_picture_row);
 
                 /* CREATE ANIMATION */
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,iView,"picture");
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, iView, "picture");
 
                 /* START INTENT AND ANIMATION */
-                startActivity(intent,options.toBundle());
+                startActivity(intent, options.toBundle());
 
             }
         });
 
         /* PREPARE LOAD MANAGER */
-        getLoaderManager().initLoader(ITEM_LOADER,null,this);
+        getLoaderManager().initLoader(ITEM_LOADER, null, this);
 
     }
 
     /* CREATE TOOLBAR MENU */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.delete_all_item:
                 showDeleteAllConfirmationDialog();
                 break;
@@ -158,12 +158,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 InventoryEntry.COLUMN_ITEM_PICTURE
         };
 
-        Cursor cursor = getContentResolver().query(InventoryEntry.CONTENT_URI,projection,null,null,null);
+        Cursor cursor = getContentResolver().query(InventoryEntry.CONTENT_URI, projection, null, null, null);
 
         cursor.moveToFirst();
 
         /* CHECK IF CURSOR IS EMPTY */
-        if(cursor.getCount() != 0) {
+        if (cursor.getCount() != 0) {
 
             /* DELETE PICTURES FROM INTERNAL STORAGE */
             do {

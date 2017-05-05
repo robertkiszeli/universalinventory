@@ -78,8 +78,11 @@
     <style name="edit_edit_text_phone_and_email">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/edit_item_phone_email_edit_text_margin_left</item>
-        <item name="android:layout_marginStart">@dimen/edit_item_phone_email_edit_text_margin_start</item>
+        <item name="android:layout_marginLeft">@dimen/edit_item_phone_email_edit_text_margin_left
+        </item>
+        <item name="android:layout_marginStart">
+            @dimen/edit_item_phone_email_edit_text_margin_start
+        </item>
         <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:textSize">@dimen/edit_item_phone_email_edit_text_text_size</item>
         <item name="android:gravity">end</item>
@@ -91,7 +94,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/edit_item_phone_email_button_margin_top</item>
-        <item name="android:layout_marginStart">@dimen/edit_item_phone_email_edit_text_margin_start</item>
+        <item name="android:layout_marginStart">
+            @dimen/edit_item_phone_email_edit_text_margin_start
+        </item>
         <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:textSize">@dimen/edit_item_phone_email_button_text_size</item>
         <item name="android:gravity">end</item>

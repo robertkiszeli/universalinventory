@@ -113,7 +113,7 @@
     <string name="item_current_quantity_text">Current Quantity</string>
     <string name="save_item_edit_menu">Save item</string>
     <string name="delete_all_item_main_menu">Delete all item</string>
-    <string name="empty_view_main_menu">Empty database</string>
+    <string name="empty_view_main_menu">Empty database,\n press button to ad item!</string>
     <string name="sell">Sell</string>
     <string name="add">Add</string>
     <string name="required_fields">* required fields</string>

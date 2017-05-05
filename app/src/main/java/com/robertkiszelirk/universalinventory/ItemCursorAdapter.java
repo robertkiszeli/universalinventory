@@ -28,7 +28,7 @@ import static com.robertkiszelirk.universalinventory.data.InventoryContract.*;
 
 
 /* LIST VIEW ITEM HANDLE */
-class ItemCursorAdapter extends CursorAdapter{
+class ItemCursorAdapter extends CursorAdapter {
 
     /* ITEM NAME */
     private String nameText;
@@ -36,7 +36,7 @@ class ItemCursorAdapter extends CursorAdapter{
     /* ITEM PICTURE PATH */
     private String picturePath;
 
-    ItemCursorAdapter(Context context, Cursor c){
+    ItemCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
 
@@ -80,7 +80,7 @@ class ItemCursorAdapter extends CursorAdapter{
         nameText = cursor.getString(nameColumnIndex);
 
         /* INITIALIZE ITEM PRICE TEXT*/
-        String priceText = String.format("%.2f",cursor.getDouble(priceColumnIndex)) +
+        String priceText = String.format("%.2f", cursor.getDouble(priceColumnIndex)) +
                 " " +
                 cursor.getString(currencyColumnIndex) +
                 "/" +
@@ -96,10 +96,10 @@ class ItemCursorAdapter extends CursorAdapter{
         final double actualQuantity = Double.parseDouble(cursor.getString(quantityColumnIndex));
 
         /* IF PICTURE EXITS ADD TO IMAGE VIEW */
-        if(!picturePath.equals(context.getString(R.string.no_picture))){
+        if (!picturePath.equals(context.getString(R.string.no_picture))) {
             File imageFile = new File(picturePath);
             Bitmap imageBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-            if(imageFile.exists()) {
+            if (imageFile.exists()) {
                 pictureImageView.setImageBitmap(imageBitmap);
             }
         }
@@ -119,7 +119,7 @@ class ItemCursorAdapter extends CursorAdapter{
             @Override
             public void onClick(View view) {
                 /* CREATE DIALOG BOX TO SELL QUANTITY */
-                showSellDialogBox(context, quantityTextView, unitString,actualQuantity, rowId);
+                showSellDialogBox(context, quantityTextView, unitString, actualQuantity, rowId);
             }
         });
 
@@ -129,7 +129,7 @@ class ItemCursorAdapter extends CursorAdapter{
             @Override
             public void onClick(View view) {
                 /* CREATE DIALOG BOX TO ADD QUANTITY */
-                showAddDialogBox(context, quantityTextView, unitString,actualQuantity, rowId);
+                showAddDialogBox(context, quantityTextView, unitString, actualQuantity, rowId);
             }
         });
 
@@ -139,19 +139,19 @@ class ItemCursorAdapter extends CursorAdapter{
             @Override
             public void onClick(View view) {
                 /* DELETE ITEM FROM LIST VIEW */
-                deleteItem(context,rowId);
+                deleteItem(context, rowId);
             }
         });
 
     }
 
     /* DELETE ITEM METHOD */
-    private void deleteItem(final Context context,final int id) {
+    private void deleteItem(final Context context, final int id) {
 
         /* CREATE ALERT DIALOG BEFORE DELETE */
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View dialogView = inflater.inflate(R.layout.delete_dialog,null);
+        final View dialogView = inflater.inflate(R.layout.delete_dialog, null);
         dialogBuilder.setView(dialogView);
 
         dialogBuilder.setTitle(R.string.delete_item);
@@ -164,10 +164,10 @@ class ItemCursorAdapter extends CursorAdapter{
                 File image = new File(picturePath);
                 image.delete();
                 /* DELETE ITEM FROM DATABASE */
-                Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI,id);
+                Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
                 context.getContentResolver().delete(currentItemUri, null, null);
                 /* TOAST TEXT */
-                showToast(context,nameText + context.getString(R.string.was_deleted));
+                showToast(context, nameText + context.getString(R.string.was_deleted));
             }
         });
         dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -188,7 +188,7 @@ class ItemCursorAdapter extends CursorAdapter{
         /* CREATE SELL DIALOG BOX */
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View dialogView = inflater.inflate(R.layout.sell_add_dialog,null);
+        final View dialogView = inflater.inflate(R.layout.sell_add_dialog, null);
         dialogBuilder.setView(dialogView);
 
         /* INITIALIZE SELL EDIT TEXT */
@@ -200,7 +200,7 @@ class ItemCursorAdapter extends CursorAdapter{
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 double newQuantity;
-                if((!sellQuantity.getText().toString().equals(""))&&(!sellQuantity.getText().toString().equals("."))) {
+                if ((!sellQuantity.getText().toString().equals("")) && (!sellQuantity.getText().toString().equals("."))) {
                     /* CHECK QUANTITY >= 0 */
                     newQuantity = actQuantity - Double.parseDouble(sellQuantity.getText().toString());
                     if (newQuantity > 0) {
@@ -215,7 +215,7 @@ class ItemCursorAdapter extends CursorAdapter{
                         /* SHOW TOAST IF QUANTITY UNDER 0 */
                         showToast(context, context.getString(R.string.sell_more_than_have));
                     }
-                }else{
+                } else {
                     /* SHOW TOAST IF WRONG INPUT */
                     showToast(context, context.getString(R.string.wrong_input));
                 }
@@ -231,7 +231,7 @@ class ItemCursorAdapter extends CursorAdapter{
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
         /* SHOW SOFT KEYBOARD */
-        alertDialog.getWindow().setSoftInputMode (WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
     }
 
@@ -239,7 +239,7 @@ class ItemCursorAdapter extends CursorAdapter{
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
-        final View dialogView = inflater.inflate(R.layout.sell_add_dialog,null);
+        final View dialogView = inflater.inflate(R.layout.sell_add_dialog, null);
         dialogBuilder.setView(dialogView);
 
         /* INITIALIZE ADD EDIT TEXT */
@@ -252,23 +252,23 @@ class ItemCursorAdapter extends CursorAdapter{
             public void onClick(DialogInterface dialogInterface, int i) {
                 double newQuantity;
                 /* CHECK VALID INPUT */
-                if((!addQuantity.getText().toString().equals(""))&&(!addQuantity.getText().toString().equals("."))) {
+                if ((!addQuantity.getText().toString().equals("")) && (!addQuantity.getText().toString().equals("."))) {
                     newQuantity = actQuantity + Double.parseDouble(addQuantity.getText().toString());
                     /* CHECK NEW QUANTITY MAXIMUM */
-                    if(newQuantity < 999999999) {
+                    if (newQuantity < 999999999) {
                         qTextView.setText(String.format("%.2f", newQuantity) + uString);
                         /* SAVE NEM QUANTITY TO DATABASE */
                         ContentValues values = new ContentValues();
                         values.put(InventoryEntry.COLUMN_ITEM_QUANTITY, newQuantity);
                         Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
                         context.getContentResolver().update(currentItemUri, values, null, null);
-                    }else{
+                    } else {
                         /* TOAST FOR MAXIMUM QUANTITY */
-                        showToast(context,context.getString(R.string.max_number));
+                        showToast(context, context.getString(R.string.max_number));
                     }
-                }else{
+                } else {
                     /* TOAST FOR WRONG NUMBER */
-                    showToast(context,context.getString(R.string.wrong_input));
+                    showToast(context, context.getString(R.string.wrong_input));
                 }
             }
         });
@@ -281,12 +281,12 @@ class ItemCursorAdapter extends CursorAdapter{
 
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
-        alertDialog.getWindow().setSoftInputMode (WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
     }
 
     /* SHOW TOAST METHOD */
-    private void showToast(Context context,String string){
+    private void showToast(Context context, String string) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
     }
 }
