@@ -137,7 +137,7 @@
     <string name="delete_item">Delete item</string>
     <string name="delete_item_text">Select \"Delete\" to delete item !</string>
     <string name="delete">Delete</string>
-    <string name="was_deleted">was deleted !</string>
+    <string name="was_deleted"> was deleted !</string>
     <string name="cancel">Cancel</string>
     <string name="selling_quantity">Selling quantity</string>
     <string name="selling_quantit_text">Add number in</string>
@@ -179,5 +179,6 @@
     <string name="item_saved">Item saved</string>
     <string name="error_at_update">Error with updating item</string>
     <string name="update_success">Item update successful</string>
+    <string name="edit_invalid_item_delete">Can not delete item. That is not saved!</string>
 
 </resources>

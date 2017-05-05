@@ -5,7 +5,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.app.LoaderManager;
+import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +24,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.content.res.ResourcesCompat;
@@ -33,7 +36,9 @@ import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -59,6 +64,9 @@ import static com.robertkiszelirk.universalinventory.data.InventoryContract.*;
 
 /* EDIT ACTIVITY TO EDIT OR ADD AN ITEM TO THE DATABASE */
 public class EditActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    /* CURRENT ITEM ID */
+    int currentItemId;
 
     /* IMAGE BUTTON TO ROTATE RIGHT RIGHT */
     AppCompatImageButton rotateImageRight;
@@ -289,7 +297,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onClick(View view) {
 
-                /* CHECK VALID TAXTS */
+                /* CHECK VALID TEXT */
                 String toastText = "";
 
                 String name = itemName.getText().toString().trim();
@@ -374,6 +382,19 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
 
                     showToast(toastText);
 
+                }
+            }
+        });
+
+        /* DELETE ITEM BUTTON */
+        AppCompatButton deleteItem = (AppCompatButton) findViewById(R.id.delete_item_from_edit);
+        deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentItemUri != null) {
+                    deleteItem(EditActivity.this,currentItemId );
+                }else{
+                    showToast(getString(R.string.edit_invalid_item_delete));
                 }
             }
         });
@@ -907,6 +928,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         if (cursor.moveToFirst()) {
 
             /* GET DATA FROM CURSOR */
+            long idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
             int pictureColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_PICTURE);
             int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_NAME);
             int unitColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_UNIT);
@@ -918,6 +940,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             int supEmailColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_SUP_EMAIL);
 
             /* SET DATA TO VARIABLES */
+            int currentId = cursor.getInt((int) idColumnIndex);
             String picturePath = cursor.getString(pictureColumnIndex);
             String name = cursor.getString(nameColumnIndex);
             String unit = cursor.getString(unitColumnIndex);
@@ -929,6 +952,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             String supEmail = cursor.getString(supEmailColumnIndex);
 
             /* SET VARIABLES TO THE CORRECT VIEW */
+            currentItemId = currentId;
             mCurrentPhotoPath = picturePath;
             mNewPhotoPath = picturePath;
             if (!mCurrentPhotoPath.equals(getString(R.string.no_picture))) {
@@ -1040,6 +1064,44 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         animator.start();
 
     }
+
+    /* DELETE ITEM METHOD */
+    private void deleteItem(final Context context, final int id) {
+
+        /* CREATE ALERT DIALOG BEFORE DELETE */
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        final View dialogView = inflater.inflate(R.layout.delete_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        dialogBuilder.setTitle(R.string.delete_item);
+        dialogBuilder.setMessage(R.string.delete_item_text);
+        dialogBuilder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                /* DELETE PICTURE FROM INTERNAL STORAGE */
+                File image = new File(mCurrentPhotoPath);
+                image.delete();
+                /* DELETE ITEM FROM DATABASE */
+                Uri currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
+                context.getContentResolver().delete(currentItemUri, null, null);
+                /* TOAST TEXT */
+                showToast(itemName.getText().toString() + " " + context.getString(R.string.was_deleted));
+                NavUtils.navigateUpFromSameTask(EditActivity.this);
+            }
+        });
+        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
 
     private void showToast(String string) {
 

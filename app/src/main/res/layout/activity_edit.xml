@@ -258,6 +258,13 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email_address" />
             </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/delete_item_from_edit"
+                style="@style/edit_button_phone_and_email"
+                android:text="Delete"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
+
         </LinearLayout>
 
     </ScrollView>
